@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap');
+
+$white:white;
+$black:black;
+$malinSombre:RGB(090, 139, 200);
+$fond:RGB(250, 247, 231);
+$border:RGB(207, 161, 120);
+$colorGreyDice:RGB(170, 170, 170);
+$colorGreenDice:RGB(174, 195, 166);
+$colorSelectedDice:blue;
+$costaud:RGB(243, 121, 104);
+$malin:RGB(090, 139, 200);
+$mignon:RGB(119, 193, 097);
+
+@mixin block {
+    background: $white;
+    padding: 5px;
+    padding-right: 10px;
+    border: 2px solid $border;
+    border-radius: 25px;
+}

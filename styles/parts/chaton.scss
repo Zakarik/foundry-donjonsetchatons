@@ -1,0 +1,621 @@
+.chaton {
+    font-family: "Patrick Hand";
+    min-width:850px;
+
+    section.window-content {
+        background:$fond;
+    }
+
+    header.sheet-header {
+        display:grid;
+        grid-template-columns:150px 1fr;
+        grid-gap:5px;
+
+        img {
+            width:100%;
+            height:100%;
+
+            grid-column:1;
+            grid-row:1 / 3;
+            object-fit: contain;
+        }
+
+        h1 {
+            grid-column:2;
+            grid-row:1;
+
+            input {
+                width: 100%;
+                margin: 0px;
+                padding: 10px 0px 0px;
+                text-align: center;
+                border-radius: 0px;
+                border-top: 0px;
+                border-left: 0px;
+                border-right: 0px;
+                background: transparent;
+                font-weight:bold;
+            }
+        }
+
+        div {
+            &.flexrow {
+                display:grid;
+                grid-gap:5px;
+                grid-auto-flow:column;
+                grid-template-rows:auto auto;
+
+                grid-column:2;
+                grid-row:2;
+
+                label {
+                    display:flex;
+                    width:100%;
+                    justify-content: space-between;
+                    align-content: center;
+                    align-items: center;
+
+                    &.shortspan {
+                        span {
+                            font-weight:bold;
+                            letter-spacing: 1px;
+                        }
+
+                        input {
+                            width:100%;
+                            border-radius:0px;
+                            border:0px;
+                            background:transparent;
+                            margin:0px 0px 0px 5px;
+                            padding:0px;
+                            letter-spacing: 1px;
+                        }
+                    }
+
+                    &.plaintext {
+                        @include block;
+
+                        flex-wrap: wrap;
+                        grid-row:1 / 4;
+                        padding:5px;
+
+                        span {
+                            width:100%;
+                            font-weight:bold;
+                            letter-spacing: 1px;
+                        }
+
+                        textarea {
+                            width:100%;
+                            border-radius:0px;
+                            background:transparent;
+                            margin:0px;
+                            padding:0px;
+                            border:0px;
+                            height:calc(100% - 20px);
+                            margin-left:2px;
+                            margin-right:2px;
+                            font-family: inherit;
+                            letter-spacing: 1px;
+                        }
+                    }
+                }
+
+                div {
+                    &.double {
+                        @include block;
+
+                        display:flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        align-content: center;
+
+                        span {
+                            &.label {
+                                font-weight:bold;
+                                letter-spacing: 1px;
+                                font-size:16px;
+                            }
+                        }
+
+                        div {
+                            display:flex;
+                            justify-content: space-between;
+                            width:100%;
+                            margin-left:5px;
+
+                            label {
+                                position:relative;
+                                width:calc(50% - 7.5px);
+
+                                span {
+                                    &.subname {
+                                        position: absolute;
+                                        width: 100%;
+                                        bottom: 0px;
+                                        font-size: 11px;
+                                        text-align: center;
+                                        letter-spacing: 1px;
+                                    }
+                                }
+
+                                input {
+                                    width:100%;
+                                    height:49px;
+                                    font-size:34px;
+                                    border-radius:0px;
+                                    border:0px;
+                                    background:transparent;
+                                    margin:0px;
+                                    padding:0px;
+                                    height:100%;
+                                }
+
+                                &:first-of-type {
+                                    text-align: right;
+                                    padding-right:5px;
+                                }
+
+                                &:last-of-type {
+                                    text-align: left;
+                                    padding-left:5px;
+                                }
+                            }
+
+                            span {
+                                &.separateur {
+                                    display:block;
+                                    width:15px;
+                                    color:$border;
+                                    line-height: 40px;
+                                    font-weight: bold;
+                                    font-size: 33px;
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+
+                    &.identite {
+                        @include block;
+
+                        display: flex;
+                        width: 100%;
+                        flex-wrap: wrap;
+                        grid-template-columns: 1fr 1fr;
+                    }
+                }
+            }
+
+            &.description {
+                @include block;
+
+                display: flex;
+                width: 100%;
+                flex-wrap: wrap;
+
+                span {
+                    width: 100%;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                }
+
+                p {
+                    letter-spacing: 1px;
+                    text-align: justify;
+                }
+            }
+        }
+    }
+
+    div {
+        &.tab {
+            position:relative;
+        }
+
+        &.mainBlock {
+            display:grid;
+            grid-template-columns:auto auto auto;
+            grid-gap:5px;
+
+            div {
+                &.qualites {
+                    display:flex;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+                    grid-column:1 / 3;
+
+                    h1 {
+                        width: 100%;
+                        align-content: baseline;
+                        background: transparent;
+                        font-variant: small-caps;
+                        color: $black;
+                        line-height: 45px;
+                        min-height: 39px;
+                        justify-content: center;
+                        display: flex;
+                        text-align: center;
+                        font-size: 39px;
+                        border:0px;
+                    }
+
+                    div {
+                        &.blockInput {
+                            display: flex;
+                            flex-wrap: wrap;
+                            position: relative;
+                            height: 157px;
+                            width: 125px;
+
+                            label {
+                                display: flex;
+                                width: 100%;
+                                justify-content: center;
+                                align-items: center;
+                                cursor: pointer;
+
+                                i {
+                                    margin-right:1px;
+                                }
+
+                                span {
+                                    display: block;
+                                    width: max-content;
+                                    margin-left: 2px;
+                                    text-align: center;
+                                    font-size: 18px;
+                                    font-weight: bold;
+                                    line-height: 30px;
+                                    letter-spacing: 1px;
+                                }
+
+                                &:hover {
+                                    &.costaud {
+                                        color:$costaud;
+                                    }
+
+                                    &.malin {
+                                        color:$malin;
+                                    }
+
+                                    &.mignon {
+                                        color:$mignon;
+                                    }
+                                }
+                            }
+                        }
+
+                          &.input {
+                            display: flex;
+                            position: relative;
+                            height: 127px;
+                            width: 100%;
+
+                            img {
+                                border:0px;
+                            }
+
+                            input {
+                                position: absolute;
+                                border-radius: 50%;
+                                border: 0px;
+                                background: transparent;
+                                text-align: center;
+                                top: calc(50% - 30px);
+                                height: 74px;
+                                width: 74px;
+                                left: calc(50% - 37px);
+                                font-size: 34px;
+                                font-family: inherit;
+                            }
+                        }
+                    }
+                }
+
+                &.valeurs {
+                    display:flex;
+                    align-items: end;
+                    flex-wrap: wrap;
+                    justify-content: space-around;
+
+                    div {
+
+                        img {
+                            border:0px;
+                        }
+
+                        &.coeur {
+                            display:flex;
+                            flex-wrap: wrap;
+                            position:relative;
+                            height:175px;
+                            width:164px;
+
+                            div.blockInput {
+                                position:absolute;
+                                display:flex;
+                                justify-content: center;
+                                top:calc(50% - 45px);
+                                width:100%;
+                            }
+
+                            >span {
+                                display: block;
+                                width: 100%;
+                                text-align: center;
+                                font-size: 18px;
+                                font-weight: bold;
+                                font-family: "patrick hand";
+                                line-height: 30px;
+                            }
+                        }
+
+                        &.amitie {
+                            display:flex;
+                            flex-wrap: wrap;
+                            position:relative;
+                            height:205px;
+                            width:164px;
+
+                            div.blockInput {
+                                position:absolute;
+                                display:flex;
+                                justify-content: center;
+                                top:calc(75% - 57px);
+                                width:100%;
+                            }
+
+                            >span {
+                                display: block;
+                                width: 100%;
+                                text-align: center;
+                                font-size: 18px;
+                                font-weight: bold;
+                                font-family: "patrick hand";
+                                line-height: 30px;
+                            }
+                        }
+
+                        &.blockInput {
+                            span {
+                                height:49px;
+                                width:15px;
+                                font-size: 34px;
+                                letter-spacing: 1px;
+                            }
+                        }
+
+                        input {
+                            border-radius:50%;
+                            border:0px;
+                            background:transparent;
+                            text-align: center;
+                            height: 49px;
+                            width: 37px;
+                            font-size: 34px;
+                            font-family: "Patrick Hand";
+
+                            &:first-of-type {
+                                text-align: right;
+                            }
+
+                            &:last-of-type {
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.mainTalent {
+            display:grid;
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: repeat(3, 1fr);
+            margin-bottom:10px;
+
+            div,
+            label {
+                width:100%;
+            }
+
+            div {
+                display:flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                select {
+                    width:calc(100% - 27px);
+                    border-radius:0px;
+                }
+
+                img {
+                    width:27px;
+                    height:27px;
+                    cursor:pointer;
+                    border:1px solid $black;
+                    border-radius:0px;
+                }
+            }
+        }
+
+        &.grimoire,
+        &.sac {
+            label {
+                &.add {
+                    cursor:pointer;
+                    font-weight: bold;
+                    position: absolute;
+                    right: 10px;
+                    top:-25px;
+
+                    &:hover {
+                        text-shadow: 0 0 0.2em $malinSombre, 0 0 0.2em $malinSombre, 0 0 0.2em $malinSombre;
+                    }
+                }
+            }
+        }
+
+        &.mainGrimoire {
+            display:grid;
+            grid-gap: 5px;
+            grid-template-columns: repeat(2, 1fr);
+            margin-top:25px;
+
+            div {
+                &.col {
+                    display:grid;
+                    grid-gap: 5px;
+                    grid-template-columns: repeat(1, 1fr);
+                }
+
+                &.miagie {
+                    border:2px solid $border;
+                    background:$white;
+                    border-radius:25px;
+                    position:relative;
+                    padding-bottom:15px;
+                    word-break: break-word;
+
+                    a.item-dialog {
+                        position:absolute;
+                        top: 4px;
+                        left: 5px;
+                        cursor:pointer;
+                    }
+
+                    div {
+                        &.buttons {
+                            display: flex;
+                            justify-content: space-between;
+                            position: absolute;
+                            width: 32px;
+                            top: 4px;
+                            right: 5px;
+                        }
+
+                        &.data {
+                            display: inline-block;
+                            width: calc(50% - 5px);
+                            padding-left: 5px;
+                        }
+                    }
+
+                    span {
+                        &.label {
+                            display:block;
+                            width:100%;
+                            text-align: center;
+                            font-weight:bold;
+                            border-bottom:1px solid $black;
+                            padding-left:5px;
+                            padding-right:5px;
+                            padding-top:5px;
+                        }
+                    }
+
+                    p {
+                        text-align: justify;
+                        padding-left:5px;
+                        padding-right:5px;
+                        margin:0px;
+                    }
+                }
+            }
+        }
+
+        &.mainSac {
+            display:grid;
+            grid-gap: 5px;
+            grid-template-columns: repeat(2, 1fr);
+            margin-top:25px;
+
+            div {
+                &.col {
+                    display:grid;
+                    grid-gap: 5px;
+                    grid-template-columns: repeat(1, 1fr);
+                }
+
+                &.equipement {
+                    border:2px solid $border;
+                    background:$white;
+                    border-radius:25px;
+                    position:relative;
+                    padding-bottom:15px;
+                    word-break: break-word;
+
+                    a.item-dialog {
+                        position:absolute;
+                        top: 4px;
+                        left: 5px;
+                        cursor:pointer;
+                    }
+
+                    div {
+                        &.buttons {
+                            display: flex;
+                            justify-content: space-between;
+                            position: absolute;
+                            width: 32px;
+                            top: 4px;
+                            right: 5px;
+                        }
+                    }
+
+                    span {
+                        &.label {
+                            display:block;
+                            width:100%;
+                            text-align: center;
+                            font-weight:bold;
+                            border-bottom:1px solid $black;
+                            padding-left:5px;
+                            padding-right:5px;
+                            padding-top:5px;
+                        }
+                    }
+
+                    p {
+                        text-align: justify;
+                        padding-left:5px;
+                        padding-right:5px;
+                        margin:0px;
+                    }
+                }
+            }
+        }
+
+        &.historique {
+            >div {
+                @include block;
+                display: flex;
+                width: 100%;
+                flex-wrap: wrap;
+
+                div.editor {
+                    min-height: 100px;
+                    width: 100%;
+                    letter-spacing: 1px;
+                }
+
+                span {
+                    width: 100%;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                }
+
+                p {
+                    letter-spacing: 1px;
+                    text-align: justify;
+                }
+
+                &:first-of-type {
+                    margin-bottom:10px;
+                }
+            }
+        }
+    }
+}

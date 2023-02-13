@@ -1,0 +1,14 @@
+<form class="mainFlex {{cssClass}}" autocomplete="off">
+    <header class="sheet-header flexrow">
+        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" />
+
+        <h1 class="charname">
+            <input name="name" type="text" value="{{data.name}}" placeholder="{{localize "DC.Nom"}}" />
+        </h1>
+
+        <div class="description">
+            <span class="label">{{localize "DC.HISTORIQUE.Description"}}</span>
+            {{{systemData.description}}}
+        </div>
+    </header>
+</form>

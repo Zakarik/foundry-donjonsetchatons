@@ -1,0 +1,44 @@
+{
+  "Actor": {
+    "types": ["chaton"],
+    "chaton": {
+      "don":"",
+      "enfance":"",
+      "caractere":"",
+      "description":"",
+      "historique":"",
+      "experience":{
+        "actuelle":0,
+        "totale":0
+      },
+      "qualites":{
+        "costaud":0,
+        "malin":0,
+        "mignon":0
+      },
+      "coeur":{
+        "value":0
+      },
+      "amitie":{
+        "value":0
+      },
+      "talents":{}
+    }
+  },
+  "Item": {
+    "types": ["miagie", "equipement"],
+    "templates":{
+      "generique":{
+        "description":""
+      }
+    },
+    "miagie":{
+      "templates": ["generique"],
+      "qualite":"",
+      "succes":1
+    },
+    "equipement":{
+      "templates": ["generique"]
+    }
+  }
+}

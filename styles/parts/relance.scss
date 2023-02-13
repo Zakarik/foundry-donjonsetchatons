@@ -1,0 +1,72 @@
+.relance {
+    font-family: "Patrick Hand";
+
+    section.window-content {
+        background:$fond;
+    }
+
+    ol {
+        list-style: none;
+        margin: 5px 0;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-around;
+        padding-top: 25px;
+        padding-bottom: 25px;
+
+        li {
+            &.roll {
+                position: relative;
+                min-width: 24px;
+                line-height: 24px;
+                float: left;
+                margin-right: 1px;
+                background:$colorGreyDice;
+                background-repeat: no-repeat;
+                background-size: 24px 24px;
+                font-size: var(--font-size-16);
+                color: #000;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            &.d6 {
+                background:$colorGreyDice;
+                font-size: 30px;
+                width: 60px;
+                line-height: 60px;
+                cursor:pointer;
+            }
+
+            &.success {
+                color: #18520b;
+                background:$colorGreenDice;
+            }
+
+            &.selected {
+                box-shadow: 0px 0px 25px $colorSelectedDice;
+            }
+        }
+    }
+
+    section {
+        &.sheet-footer {
+            display:flex;
+            justify-content: space-between;
+
+            button {
+                width:calc(50% - 2px);
+                margin:0px;
+                padding:0px;
+                background: rgba(255, 255, 240, 0.8);
+                border: 1px solid var(--color-border-light-primary);
+                border-radius: 0px;
+                font-size: var(--font-size-14);
+                line-height: 28px;
+                font-family: var(--font-primary);
+                cursor: pointer;
+            }
+        }
+    }
+}

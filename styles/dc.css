@@ -1,0 +1,738 @@
+@import url("https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap");
+.chaton {
+  font-family: "Patrick Hand";
+  min-width: 850px;
+}
+.chaton section.window-content {
+  background: RGB(250, 247, 231);
+}
+.chaton header.sheet-header {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  grid-gap: 5px;
+}
+.chaton header.sheet-header img {
+  width: 100%;
+  height: 100%;
+  grid-column: 1;
+  grid-row: 1/3;
+  object-fit: contain;
+}
+.chaton header.sheet-header h1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+.chaton header.sheet-header h1 input {
+  width: 100%;
+  margin: 0px;
+  padding: 10px 0px 0px;
+  text-align: center;
+  border-radius: 0px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  background: transparent;
+  font-weight: bold;
+}
+.chaton header.sheet-header div.flexrow {
+  display: grid;
+  grid-gap: 5px;
+  grid-auto-flow: column;
+  grid-template-rows: auto auto;
+  grid-column: 2;
+  grid-row: 2;
+}
+.chaton header.sheet-header div.flexrow label {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+.chaton header.sheet-header div.flexrow label.shortspan span {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.chaton header.sheet-header div.flexrow label.shortspan input {
+  width: 100%;
+  border-radius: 0px;
+  border: 0px;
+  background: transparent;
+  margin: 0px 0px 0px 5px;
+  padding: 0px;
+  letter-spacing: 1px;
+}
+.chaton header.sheet-header div.flexrow label.plaintext {
+  background: white;
+  padding: 5px;
+  padding-right: 10px;
+  border: 2px solid RGB(207, 161, 120);
+  border-radius: 25px;
+  flex-wrap: wrap;
+  grid-row: 1/4;
+  padding: 5px;
+}
+.chaton header.sheet-header div.flexrow label.plaintext span {
+  width: 100%;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.chaton header.sheet-header div.flexrow label.plaintext textarea {
+  width: 100%;
+  border-radius: 0px;
+  background: transparent;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  height: calc(100% - 20px);
+  margin-left: 2px;
+  margin-right: 2px;
+  font-family: inherit;
+  letter-spacing: 1px;
+}
+.chaton header.sheet-header div.flexrow div.double {
+  background: white;
+  padding: 5px;
+  padding-right: 10px;
+  border: 2px solid RGB(207, 161, 120);
+  border-radius: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+.chaton header.sheet-header div.flexrow div.double span.label {
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+.chaton header.sheet-header div.flexrow div.double div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-left: 5px;
+}
+.chaton header.sheet-header div.flexrow div.double div label {
+  position: relative;
+  width: calc(50% - 7.5px);
+}
+.chaton header.sheet-header div.flexrow div.double div label span.subname {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  font-size: 11px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.chaton header.sheet-header div.flexrow div.double div label input {
+  width: 100%;
+  height: 49px;
+  font-size: 34px;
+  border-radius: 0px;
+  border: 0px;
+  background: transparent;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+.chaton header.sheet-header div.flexrow div.double div label:first-of-type {
+  text-align: right;
+  padding-right: 5px;
+}
+.chaton header.sheet-header div.flexrow div.double div label:last-of-type {
+  text-align: left;
+  padding-left: 5px;
+}
+.chaton header.sheet-header div.flexrow div.double div span.separateur {
+  display: block;
+  width: 15px;
+  color: RGB(207, 161, 120);
+  line-height: 40px;
+  font-weight: bold;
+  font-size: 33px;
+  text-align: center;
+}
+.chaton header.sheet-header div.flexrow div.identite {
+  background: white;
+  padding: 5px;
+  padding-right: 10px;
+  border: 2px solid RGB(207, 161, 120);
+  border-radius: 25px;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr;
+}
+.chaton header.sheet-header div.description {
+  background: white;
+  padding: 5px;
+  padding-right: 10px;
+  border: 2px solid RGB(207, 161, 120);
+  border-radius: 25px;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.chaton header.sheet-header div.description span {
+  width: 100%;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.chaton header.sheet-header div.description p {
+  letter-spacing: 1px;
+  text-align: justify;
+}
+.chaton div.tab {
+  position: relative;
+}
+.chaton div.mainBlock {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 5px;
+}
+.chaton div.mainBlock div.qualites {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  grid-column: 1/3;
+}
+.chaton div.mainBlock div.qualites h1 {
+  width: 100%;
+  align-content: baseline;
+  background: transparent;
+  font-variant: small-caps;
+  color: black;
+  line-height: 45px;
+  min-height: 39px;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+  font-size: 39px;
+  border: 0px;
+}
+.chaton div.mainBlock div.qualites div.blockInput {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  height: 157px;
+  width: 125px;
+}
+.chaton div.mainBlock div.qualites div.blockInput label {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.chaton div.mainBlock div.qualites div.blockInput label i {
+  margin-right: 1px;
+}
+.chaton div.mainBlock div.qualites div.blockInput label span {
+  display: block;
+  width: max-content;
+  margin-left: 2px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 30px;
+  letter-spacing: 1px;
+}
+.chaton div.mainBlock div.qualites div.blockInput label:hover.costaud {
+  color: RGB(243, 121, 104);
+}
+.chaton div.mainBlock div.qualites div.blockInput label:hover.malin {
+  color: RGB(90, 139, 200);
+}
+.chaton div.mainBlock div.qualites div.blockInput label:hover.mignon {
+  color: RGB(119, 193, 97);
+}
+.chaton div.mainBlock div.qualites div.input {
+  display: flex;
+  position: relative;
+  height: 127px;
+  width: 100%;
+}
+.chaton div.mainBlock div.qualites div.input img {
+  border: 0px;
+}
+.chaton div.mainBlock div.qualites div.input input {
+  position: absolute;
+  border-radius: 50%;
+  border: 0px;
+  background: transparent;
+  text-align: center;
+  top: calc(50% - 30px);
+  height: 74px;
+  width: 74px;
+  left: calc(50% - 37px);
+  font-size: 34px;
+  font-family: inherit;
+}
+.chaton div.mainBlock div.valeurs {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.chaton div.mainBlock div.valeurs div img {
+  border: 0px;
+}
+.chaton div.mainBlock div.valeurs div.coeur {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  height: 175px;
+  width: 164px;
+}
+.chaton div.mainBlock div.valeurs div.coeur div.blockInput {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: calc(50% - 45px);
+  width: 100%;
+}
+.chaton div.mainBlock div.valeurs div.coeur > span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "patrick hand";
+  line-height: 30px;
+}
+.chaton div.mainBlock div.valeurs div.amitie {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  height: 205px;
+  width: 164px;
+}
+.chaton div.mainBlock div.valeurs div.amitie div.blockInput {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: calc(75% - 57px);
+  width: 100%;
+}
+.chaton div.mainBlock div.valeurs div.amitie > span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "patrick hand";
+  line-height: 30px;
+}
+.chaton div.mainBlock div.valeurs div.blockInput span {
+  height: 49px;
+  width: 15px;
+  font-size: 34px;
+  letter-spacing: 1px;
+}
+.chaton div.mainBlock div.valeurs div input {
+  border-radius: 50%;
+  border: 0px;
+  background: transparent;
+  text-align: center;
+  height: 49px;
+  width: 37px;
+  font-size: 34px;
+  font-family: "Patrick Hand";
+}
+.chaton div.mainBlock div.valeurs div input:first-of-type {
+  text-align: right;
+}
+.chaton div.mainBlock div.valeurs div input:last-of-type {
+  text-align: left;
+}
+.chaton div.mainTalent {
+  display: grid;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 10px;
+}
+.chaton div.mainTalent div,
+.chaton div.mainTalent label {
+  width: 100%;
+}
+.chaton div.mainTalent div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.chaton div.mainTalent div select {
+  width: calc(100% - 27px);
+  border-radius: 0px;
+}
+.chaton div.mainTalent div img {
+  width: 27px;
+  height: 27px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 0px;
+}
+.chaton div.grimoire label.add, .chaton div.sac label.add {
+  cursor: pointer;
+  font-weight: bold;
+  position: absolute;
+  right: 10px;
+  top: -25px;
+}
+.chaton div.grimoire label.add:hover, .chaton div.sac label.add:hover {
+  text-shadow: 0 0 0.2em RGB(90, 139, 200), 0 0 0.2em RGB(90, 139, 200), 0 0 0.2em RGB(90, 139, 200);
+}
+.chaton div.mainGrimoire {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 25px;
+}
+.chaton div.mainGrimoire div.col {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(1, 1fr);
+}
+.chaton div.mainGrimoire div.miagie {
+  border: 2px solid RGB(207, 161, 120);
+  background: white;
+  border-radius: 25px;
+  position: relative;
+  padding-bottom: 15px;
+  word-break: break-word;
+}
+.chaton div.mainGrimoire div.miagie a.item-dialog {
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  cursor: pointer;
+}
+.chaton div.mainGrimoire div.miagie div.buttons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 32px;
+  top: 4px;
+  right: 5px;
+}
+.chaton div.mainGrimoire div.miagie div.data {
+  display: inline-block;
+  width: calc(50% - 5px);
+  padding-left: 5px;
+}
+.chaton div.mainGrimoire div.miagie span.label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+}
+.chaton div.mainGrimoire div.miagie p {
+  text-align: justify;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 0px;
+}
+.chaton div.mainSac {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 25px;
+}
+.chaton div.mainSac div.col {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(1, 1fr);
+}
+.chaton div.mainSac div.equipement {
+  border: 2px solid RGB(207, 161, 120);
+  background: white;
+  border-radius: 25px;
+  position: relative;
+  padding-bottom: 15px;
+  word-break: break-word;
+}
+.chaton div.mainSac div.equipement a.item-dialog {
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  cursor: pointer;
+}
+.chaton div.mainSac div.equipement div.buttons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 32px;
+  top: 4px;
+  right: 5px;
+}
+.chaton div.mainSac div.equipement span.label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+}
+.chaton div.mainSac div.equipement p {
+  text-align: justify;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 0px;
+}
+.chaton div.historique > div {
+  background: white;
+  padding: 5px;
+  padding-right: 10px;
+  border: 2px solid RGB(207, 161, 120);
+  border-radius: 25px;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.chaton div.historique > div div.editor {
+  min-height: 100px;
+  width: 100%;
+  letter-spacing: 1px;
+}
+.chaton div.historique > div span {
+  width: 100%;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.chaton div.historique > div p {
+  letter-spacing: 1px;
+  text-align: justify;
+}
+.chaton div.historique > div:first-of-type {
+  margin-bottom: 10px;
+}
+
+.dcitem {
+  font-family: "Patrick Hand";
+}
+.dcitem section.window-content {
+  background: RGB(250, 247, 231);
+}
+.dcitem header.sheet-header {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  grid-template-rows: 48px 1fr;
+  grid-gap: 5px;
+}
+.dcitem header.sheet-header.specialGrid {
+  grid-template-rows: 48px 60px 1fr;
+}
+.dcitem header.sheet-header img {
+  width: 100%;
+  height: 100%;
+  grid-column: 1;
+  grid-row: 1/4;
+  object-fit: contain;
+}
+.dcitem header.sheet-header h1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+.dcitem header.sheet-header h1 input {
+  width: 100%;
+  margin: 0px;
+  padding: 10px 0px 0px;
+  text-align: center;
+  border-radius: 0px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  background: transparent;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.dcitem header.sheet-header div.description {
+  background: white;
+  border: 2px solid RGB(207, 161, 120);
+  border-radius: 25px;
+  grid-column: 2;
+  height: 100%;
+  padding: 5px;
+}
+.dcitem header.sheet-header div.description h2 {
+  height: 30px;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  letter-spacing: 1px;
+}
+.dcitem header.sheet-header div.special {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  justify-items: center;
+}
+.dcitem header.sheet-header div.special label {
+  display: grid;
+  grid-template-columns: min-content;
+}
+.dcitem header.sheet-header div.special label span {
+  font-size: 17px;
+  font-weight: bold;
+  font-variant: small-caps;
+  white-space: nowrap;
+  padding: 5px;
+}
+.dcitem header.sheet-header div.special label input,
+.dcitem header.sheet-header div.special label select {
+  text-align: center;
+}
+.dcitem header.sheet-header div.editor {
+  min-height: calc(100% - 30px);
+}
+.dcitem header.sheet-header div.editor-content {
+  letter-spacing: 1px;
+}
+
+.relance {
+  font-family: "Patrick Hand";
+}
+.relance section.window-content {
+  background: RGB(250, 247, 231);
+}
+.relance ol {
+  list-style: none;
+  margin: 5px 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+.relance ol li.roll {
+  position: relative;
+  min-width: 24px;
+  line-height: 24px;
+  float: left;
+  margin-right: 1px;
+  background: RGB(170, 170, 170);
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  font-size: var(--font-size-16);
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+}
+.relance ol li.d6 {
+  background: RGB(170, 170, 170);
+  font-size: 30px;
+  width: 60px;
+  line-height: 60px;
+  cursor: pointer;
+}
+.relance ol li.success {
+  color: #18520b;
+  background: RGB(174, 195, 166);
+}
+.relance ol li.selected {
+  box-shadow: 0px 0px 25px blue;
+}
+.relance section.sheet-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.relance section.sheet-footer button {
+  width: calc(50% - 2px);
+  margin: 0px;
+  padding: 0px;
+  background: rgba(255, 255, 240, 0.8);
+  border: 1px solid var(--color-border-light-primary);
+  border-radius: 0px;
+  font-size: var(--font-size-14);
+  line-height: 28px;
+  font-family: var(--font-primary);
+  cursor: pointer;
+}
+
+div.dc div.editor {
+  display: grid;
+}
+div.dc .tox-tinymce {
+  height: 100% !important;
+}
+div.dcsenditem, div.dcaskroll {
+  font-family: "Patrick Hand";
+}
+div.dcsenditem h1, div.dcaskroll h1 {
+  font-size: 23px;
+  margin: 0px;
+  letter-spacing: 1px;
+  border: 0px;
+}
+div.dcsenditem p, div.dcaskroll p {
+  text-align: justify;
+  letter-spacing: 1px;
+}
+div.dc-roll {
+  cursor: pointer;
+}
+div.dc-roll div.old-roll {
+  display: flex;
+  align-items: center;
+}
+div.dc-roll div.old-roll h5 {
+  margin-bottom: 0px;
+  margin-top: 5px;
+  display: inline-block;
+  margin-right: 5px;
+}
+div.dc-roll div.old-roll ol.dice-old {
+  display: inline-block;
+  list-style: none;
+  margin: 5px 0;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0.8;
+  filter: grayscale(100%);
+}
+div.dc-roll div.old-roll ol.dice-old li.roll {
+  position: relative;
+  min-width: 24px;
+  line-height: 24px;
+  float: left;
+  margin-right: 1px;
+  background-image: url(../icons/svg/d6-grey.svg);
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  font-size: var(--font-size-16);
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+}
+div.dc-roll div.old-roll ol.dice-old li.d6 {
+  background: RGB(170, 170, 170);
+}
+div.dc-roll div.old-roll ol.dice-old li.success {
+  color: #18520b;
+  background: RGB(174, 195, 166);
+}
+div.dcaskroll section.window-content {
+  background: RGB(250, 247, 231);
+}
+div.dcaskroll section.window-content select {
+  width: 100%;
+  border-radius: 0px;
+}
+div.dcaskroll section.window-content div.dialog-buttons {
+  justify-content: space-between;
+  display: flex;
+  flex: none;
+}
+div.dcaskroll section.window-content div.dialog-buttons button {
+  width: calc(50% - 2px);
+  border-radius: 0px;
+  margin: 0px;
+  padding: 0px;
+}

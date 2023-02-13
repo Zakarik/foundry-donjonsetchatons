@@ -1,0 +1,32 @@
+<form class="flexcol {{cssClass}}" autocomplete="off">
+    <header class="sheet-header flexrow {{#if (isType data.type 'miagie')}}specialGrid{{/if}}">
+        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" />
+        <h1 class="charname">
+            <input name="name" type="text" value="{{data.name}}" placeholder="{{localize "DC.Nom"}}" />
+        </h1>
+        {{#if (isType data.type 'miagie')}}
+        <div class="special">
+            <label>
+                <span>{{localize "DC.MIAGIE.Qualite"}}</span>
+                <select name="system.qualite">
+                    {{#select systemData.qualite}}
+                    <option value=""></option>
+                    <option value="costaud">{{localize "DC.QUALITES.Costaud"}}</option>
+                    <option value="malin">{{localize "DC.QUALITES.Malin"}}</option>
+                    <option value="mignon">{{localize "DC.QUALITES.Mignon"}}</option>
+                    {{/select}}
+                </select>
+            </label>
+            <label>
+                <span>{{localize "DC.MIAGIE.Succes"}}</span>
+                <input type="number" name="system.succes" value="{{systemData.succes}}" min="0" />
+            </label>
+        </div>
+        {{/if}}
+        <div class="description">
+            <h2 class="header-tTitle">{{localize "DC.Description"}}</h2>
+
+            {{editor systemData.description target="system.description" button=true owner=owner editable=editable}}
+        </div>
+    </header>
+</form>

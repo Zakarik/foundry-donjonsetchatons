@@ -1,0 +1,269 @@
+<form class="mainFlex {{cssClass}}" autocomplete="off">
+    <header class="sheet-header flexrow">
+        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" />
+
+        <h1 class="charname">
+            <input name="name" type="text" value="{{data.name}}" placeholder="{{localize "DC.Nom"}}" />
+        </h1>
+
+        <div class="flexrow">
+            <div class="identite">
+                <label class="shortspan">
+                    <span>{{localize "DC.Enfance"}}</span>
+                    <input type="text" name="system.enfance" value="{{systemData.enfance}}"/>
+                </label>
+                <label class="shortspan">
+                    <span>{{localize "DC.Caractere"}}</span>
+                    <input type="text" name="system.caractere" value="{{systemData.caractere}}"/>
+                </label>
+            </div>
+            <div class="double">
+                <span class="label">{{localize "DC.Experience"}}</span>
+                <div>
+                    <label>
+                        <input type="number" name="system.experience.actuelle" value="{{systemData.experience.actuelle}}" min="0" />
+                        <span class="subname">{{localize "DC.Actuelle"}}</span>
+                    </label>
+
+                    <span class="separateur">/</span>
+
+                    <label>
+                        <input type="number" name="system.experience.totale" value="{{systemData.experience.totale}}" min="0" />
+                        <span class="subname">{{localize "DC.Totale"}}</span>
+                    </label>
+                </div>
+            </div>
+
+            <label class="plaintext">
+                <span>{{localize "DC.Don"}}</span>
+                <textarea name="system.don">{{systemData.don}}</textarea>
+            </label>
+        </div>
+    </header>
+
+    <div class="mainBlock">
+        <div class="qualites">
+            <h1 class="titre" data-i18n="qualites">{{localize "DC.QUALITES.Label"}}</h1>
+            <div class="blockInput">
+                <div class="input">
+                    <img src="systems/donjons-et-chatons/assets/costaud.png">
+                    <input type="number" name="system.qualites.costaud" value="{{systemData.qualites.costaud}}" min="0" max="5">
+                </div>
+                <label class="roll costaud draggable" data-label="{{localize "DC.QUALITES.Costaud"}}" data-id="costaud" data-value="{{systemData.qualites.costaud}}">
+                    <i class="fa-duotone fa-dice"></i>
+                    <span class="subtitle costaud">{{localize "DC.QUALITES.Costaud"}}</span>
+                </label>
+            </div>
+
+            <div class="blockInput">
+                <div class="input">
+                    <img src="systems/donjons-et-chatons/assets/malin.png">
+                    <input type="number" name="system.qualites.malin" value="{{systemData.qualites.malin}}" min="0" max="5">
+                </div>
+                <label class="roll malin draggable" data-label="{{localize "DC.QUALITES.Malin"}}" data-id="malin" data-value="{{systemData.qualites.malin}}">
+                    <i class="fa-duotone fa-dice"></i>
+                    <span class="subtitle malin">{{localize "DC.QUALITES.Malin"}}</span>
+                </label>
+            </div>
+
+            <div class="blockInput">
+                <div class="input">
+                    <img src="systems/donjons-et-chatons/assets/mignon.png">
+                    <input type="number" name="system.qualites.mignon" value="{{systemData.qualites.mignon}}" min="0" max="5">
+                </div>
+                <label class="roll mignon draggable" data-label="{{localize "DC.QUALITES.Mignon"}}" data-id="mignon" data-value="{{systemData.qualites.mignon}}">
+                    <i class="fa-duotone fa-dice"></i>
+                    <span class="subtitle mignon">{{localize "DC.QUALITES.Mignon"}}</span>
+                </label>
+            </div>
+        </div>
+        <div class="valeurs">
+            <div class="coeur">
+                <img src="systems/donjons-et-chatons/assets/amour.png">
+                <div class="blockInput">
+                    <input type="number" name="system.coeur.value" value="{{systemData.coeur.value}}" min="0" max="{{systemData.coeur.max}}">
+                    <span>/</span>
+                    <input type="number" name="system.coeur.max" value="{{systemData.coeur.max}}" min="0" disabled />
+                </div>
+                <span class="subtitle coeur">{{localize "DC.Coeur"}}</span>
+            </div>
+            <div class="amitie">
+                <img src="systems/donjons-et-chatons/assets/amitie.png">
+                <div class="blockInput">
+                    <input type="number" name="system.amitie.value" value="{{systemData.amitie.value}}" min="0" max="{{systemData.amitie.max}}">
+                    <span>/</span>
+                    <input type="number" name="system.amitie.max" value="{{systemData.amitie.max}}" min="0" disabled />
+                </div>
+                <span class="subtitle amitie">{{localize "DC.Amitie"}}</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="sheet-body">
+         {{!-- Sheet Tab Navigation --}}
+        <nav class="sheet-tabs tabs" data-group="primary">
+            <a class="item" data-tab="talents">{{localize "DC.TALENTS.Label"}}</a>
+            <a class="item" data-tab="grimoire">{{localize "DC.Grimoire"}}</a>
+            <a class="item" data-tab="sac">{{localize "DC.SAC.Label"}}</a>
+            <a class="item" data-tab="historique">{{localize "DC.HISTORIQUE.Label"}}</a>
+        </nav>
+
+        {{!-- Talent Tab --}}
+        <div class="tab talents" data-group="primary" data-tab="talents">
+            <div class="mainTalent">
+                {{#each actor.talents as | key talent|}}
+                    {{#if (isTalentChecked @root talent)}}
+                    <div>
+                        <label>
+                            <input type="checkbox" name="system.talents.{{talent}}.value" {{checked (isTalentChecked @root talent)}}/>
+                            <span>{{key}}</span>
+                        </label>
+                        <select name="system.talents.{{talent}}.qualite">
+                            {{#select (talentQualiteSelected @root talent)}}
+                                <option value=""></option>
+                                <option value="costaud">{{localize "DC.QUALITES.Costaud"}}</option>
+                                <option value="malin">{{localize "DC.QUALITES.Malin"}}</option>
+                                <option value="mignon">{{localize "DC.QUALITES.Mignon"}}</option>
+                            {{/select}}
+                        </select>
+                        <img src="systems/donjons-et-chatons/assets/icons/D6Black.svg" class="d6roll rolltalent draggable" data-label="{{key}}" data-istalent="true" data-id="{{talent}}" data-talent="{{talent}}">
+                    </div>
+                    {{/if}}
+                {{/each}}
+            </div>
+            <div class="mainTalent">
+                {{#each actor.talents as | key talent|}}
+                    {{#unless (isTalentChecked @root talent)}}
+                        <label>
+                            <input type="checkbox" name="system.talents.{{talent}}.value" {{checked (isTalentChecked @root talent)}}/>
+                            <span>{{key}}</span>
+                        </label>
+                    {{/unless}}
+                {{/each}}
+            </div>
+            <div class="subTalent">
+                <p><b>{{localize "DC.TALENTS.AGIR.Label"}} :</b> {{localize "DC.TALENTS.AGIR.Detail"}}</p>
+                <p><b>{{localize "DC.TALENTS.SEUIL.Label"}} :</b> {{localize "DC.TALENTS.SEUIL.Detail"}}</p>
+                <p><b>{{localize "DC.TALENTS.Label"}} :</b> {{localize "DC.TALENTS.TALENT.Detail"}} <b>{{localize "DC.TALENTS.AVANTAGE.Label"}} :</b> {{localize "DC.TALENTS.AVANTAGE.Detail"}} <b>{{localize "DC.TALENTS.DESAVANTAGE.Label"}} :</b> {{localize "DC.TALENTS.DESAVANTAGE.Detail"}} </p>
+                <p><b>{{localize "DC.TALENTS.OBJETS.Label"}} :</b> {{localize "DC.TALENTS.OBJETS.Detail"}}</p>
+                <p><b>{{localize "DC.TALENTS.CARACTERE.Label"}} :</b> {{localize "DC.TALENTS.CARACTERE.Detail"}}</p>
+            </div>
+        </div>
+
+        <div class="tab grimoire" data-group="primary" data-tab="grimoire">
+            <label class="add item-control item-create" title="{{localize "DC.CreerMiagie"}}" data-type="miagie">
+                <span>{{localize "DC.AddMiagie"}}</span>
+                <i class="fa-solid fa-plus-large"></i>
+            </label>
+            <div class="mainGrimoire">
+                <div class="col">
+                    {{#each actor.miagie as | key miagie|}}
+                        {{#if (oddOrEven 'pair' miagie)}}
+                            <div class="miagie summary" data-item-id="{{key._id}}">
+                                <a class="item-dialog draggable" title="{{localize "DC.SendMiagie"}}" data-label="{{key.name}}" data-issay="true" data-id="{{key._id}}">
+                                    <i class="fa-solid fa-comment-dots"></i>
+                                </a>
+                                <div class="buttons">
+                                    <a class="item-control item-edit" title="{{localize "DC.EditMiagie"}}"><i class="fa-duotone fa-gears"></i></a>
+                                    <a class="item-control item-delete" title="{{localize "DC.DeleteMiagie"}}"><i class="fa-duotone fa-trash"></i></a>
+                                </div>
+                                <span class="label">
+                                    {{key.name}}
+                                </span>
+                                <div class="data">
+                                    <b>{{localize "DC.MIAGIE.Qualite"}} : </b>{{translateQualite key.system.qualite}}
+                                </div>
+                                <div class="data">
+                                    <b>{{localize "DC.MIAGIE.Succes"}} : </b>{{key.system.succes}}
+                                </div>
+                                {{{key.system.description}}}
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+                <div class="col">
+                    {{#each actor.miagie as | key miagie|}}
+                        {{#if (oddOrEven 'impair' miagie)}}
+                            <div class="miagie summary" data-item-id="{{key._id}}">
+                                <a class="item-dialog" title="{{localize "DC.SendMiagie"}}" data-label="{{key.name}}" data-issay="true" data-id="{{key._id}}">
+                                    <i class="fa-solid fa-comment-dots"></i>
+                                </a>
+                                <div class="buttons">
+                                    <a class="item-control item-edit" title="{{localize "DC.EditMiagie"}}"><i class="fa-duotone fa-gears"></i></a>
+                                    <a class="item-control item-delete" title="{{localize "DC.DeleteMiagie"}}"><i class="fa-duotone fa-trash"></i></a>
+                                </div>
+                                <span class="label">
+                                    {{key.name}}
+                                </span>
+                                {{{key.system.description}}}
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <div class="tab sac" data-group="primary" data-tab="sac">
+            <label class="add item-control item-create" title="{{localize "DC.CreerEquipement"}}" data-type="equipement">
+                <span>{{localize "DC.AddEquipement"}}</span>
+                <i class="fa-solid fa-plus-large"></i>
+            </label>
+            <div class="mainSac">
+                <div class="col">
+                    {{#each actor.equipement as | key equipement|}}
+                        {{#if (oddOrEven 'pair' equipement)}}
+                            <div class="equipement summary" data-item-id="{{key._id}}">
+                                <a class="item-dialog draggable" title="{{localize "DC.SendEquipement"}}" data-label="{{key.name}}" data-issay="true" data-id="{{key._id}}">
+                                    <i class="fa-solid fa-comment-dots"></i>
+                                </a>
+
+                                <div class="buttons">
+                                    <a class="item-control item-edit" title="{{localize "DC.EditEquipement"}}"><i class="fa-duotone fa-gears"></i></a>
+                                    <a class="item-control item-delete" title="{{localize "DC.DeleteEquipement"}}"><i class="fa-duotone fa-trash"></i></a>
+                                </div>
+                                <span class="label">
+                                    {{key.name}}
+                                </span>
+                                {{{key.system.description}}}
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+                <div class="col">
+                    {{#each actor.equipement as | key equipement|}}
+                        {{#if (oddOrEven 'impair' equipement)}}
+                            <div class="equipement summary" data-item-id="{{key._id}}">
+                                <a class="item-dialog draggable" title="{{localize "DC.SendEquipement"}}" data-label="{{key.name}}" data-issay="true" data-id="{{key._id}}">
+                                    <i class="fa-solid fa-comment-dots"></i>
+                                </a>
+                                <div class="buttons">
+                                    <a class="item-control item-edit" title="{{localize "DC.EditEquipement"}}"><i class="fa-duotone fa-gears"></i></a>
+                                    <a class="item-control item-delete" title="{{localize "DC.DeleteEquipement"}}"><i class="fa-duotone fa-trash"></i></a>
+                                </div>
+                                <span class="label">
+                                    {{key.name}}
+                                </span>
+                                {{{key.system.description}}}
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+            <div class="subSac">
+                <p>{{localize "DC.SAC.Details"}}</p>
+            </div>
+        </div>
+
+        <div class="tab historique" data-group="primary" data-tab="historique">
+            <div>
+                <span class="label">{{localize "DC.HISTORIQUE.Description"}}</span>
+                {{editor systemData.description target="system.description" button=true owner=owner editable=editable}}
+            </div>
+
+            <div>
+                <span class="label">{{localize "DC.HISTORIQUE.Label"}}</span>
+                {{editor systemData.historique target="system.historique" button=true owner=owner editable=editable}}
+            </div>
+        </div>
+    </section>
+</form>

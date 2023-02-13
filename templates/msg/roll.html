@@ -1,0 +1,21 @@
+<div class="dice-roll dc-roll">
+    <div class="dice-result">
+        <div class="dice-formula">
+            {{{flavor}}}
+        </div>
+        {{{main.tooltip}}}
+        <h4 class="dice-total">
+            {{main.total}} {{localize "DC.ROLL.Succes"}}
+        </h4>
+        {{#if main.relance}}
+        <div class="old-roll">
+            <h5>
+                {{localize "DC.ROLL.Abandonne"}} :
+            </h5>
+            <ol class="dice-old">
+                {{{main.old}}}
+            </ol>
+        </div>
+        {{/if}}
+    </div>
+</div>

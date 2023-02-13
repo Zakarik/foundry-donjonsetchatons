@@ -1,0 +1,98 @@
+.dcitem {
+    font-family: "Patrick Hand";
+
+    section.window-content {
+        background:$fond;
+    }
+
+    header.sheet-header {
+        display:grid;
+        grid-template-columns:150px 1fr;
+        grid-template-rows:48px 1fr;
+        grid-gap:5px;
+
+        &.specialGrid {
+            grid-template-rows:48px 60px 1fr;
+        }
+
+        img {
+            width:100%;
+            height:100%;
+
+            grid-column:1;
+            grid-row:1 / 4;
+            object-fit: contain;
+        }
+
+        h1 {
+            grid-column:2;
+            grid-row:1;
+
+            input {
+                width: 100%;
+                margin: 0px;
+                padding: 10px 0px 0px;
+                text-align: center;
+                border-radius: 0px;
+                border-top: 0px;
+                border-left: 0px;
+                border-right: 0px;
+                background: transparent;
+                font-weight:bold;
+                letter-spacing: 1px;
+            }
+        }
+
+        div {
+            &.description {
+                background:$white;
+                border:2px solid $border;
+                border-radius:25px;
+                grid-column:2;
+                height:100%;
+                padding:5px;
+
+                h2 {
+                    height:30px;
+                    margin:0px;
+                    border:0px;
+                    padding:0px;
+                    letter-spacing: 1px;
+                }
+            }
+
+            &.special {
+                display:grid;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 5px;
+                justify-items: center;
+
+                label {
+                    display:grid;
+                    grid-template-columns: min-content;
+
+                    span {
+                        font-size: 17px;
+                        font-weight: bold;
+                        font-variant: small-caps;
+                        white-space: nowrap;
+                        padding: 5px;
+                    }
+
+                    input,
+                    select {
+                        text-align: center;
+                    }
+                }
+            }
+
+            &.editor {
+                min-height:calc(100% - 30px);
+            }
+
+            &.editor-content {
+                letter-spacing: 1px;
+            }
+        }
+    }
+}

@@ -1,0 +1,122 @@
+{
+  "ACTOR":{
+    "TypeCharacter":"Chaton"
+  },
+  "ITEM":{
+    "TypeMiagie":"Miagie",
+    "TypeEquipement":"Équipement"
+  },
+
+  "DC": {
+    "Nom":"Nom",
+    "Enfance":"Enfance",
+    "Caractere":"Caractère",
+    "Experience":"Expérience",
+    "Don":"Don de naissance",
+    "Actuelle":"Actuelle",
+    "Totale":"Totale",
+    "Description":"Description",
+    "QUALITES":{
+      "Label":"Qualités",
+      "Costaud":"Costaud",
+      "Mignon":"Mignon",
+      "Malin":"Malin"
+    },
+    "Amitie":"Amitié",
+    "Coeur":"Coeur",
+    "TALENTS":{
+      "Label":"Talents",
+      "bougerSonPopotin":"Bouger son popotin",
+      "bricolerDesTrucsEtDesMachins":"Bricoler des trucs et des machins",
+      "connaitreLesLoisEtLesLegendes":"Connaître les lois et les légendes",
+      "connaitreLesPaysEtLesPeuples":"Connaître les pays et les peuples",
+      "convaincreEtBaratiner":"Convaincre et baratiner",
+      "cueillirEtChasser":"Cueillir et chasser",
+      "cuisiner":"Cuisiner",
+      "dessinerEtPeindre":"Dessiner et peindre",
+      "faireDeLaMusique":"Faire de la musique",
+      "faireLesPoches":"Faire les poches",
+      "feulerEtMenacer":"Feuler et menacer",
+      "griffer":"Griffer",
+      "herboriser":"Herboriser",
+      "lireEtEcrire":"Lire et écrire",
+      "lireLeCielEtLesEtoiles":"Lire le ciel et les étoiles",
+      "observerEtFouiller":"Observer et fouiller",
+      "resterCalmeEtImpassible":"Rester calme et impassible",
+      "sOccuperDesBetes":"S'occuper des bêtes",
+      "seCacherDansLesOmbres":"Se cacher dans les ombres",
+      "seDeplacerEnSilence":"Se déplacer en silence",
+      "seduireEtCharmer":"Séduire et charmer",
+      "soignerBlessuresEtMaladies":"Soigner blessures et maladies",
+      "trouverSonChemin":"Trouver son chemin",
+      "trouverUneInformation":"Trouver une information",
+      "AGIR":{
+        "Label":"Agir",
+        "Detail":"lancer 3d6, chaque résultat inférieur ou égal au score de la Qualité est un succès."
+      },
+      "SEUIL":{
+        "Label":"Seuil de difficulté",
+        "Detail":"facile 1, moyen 2, difficile 3, légendaire 4."
+      },
+      "TALENT":{
+        "Detail":"Donne un Avantage."
+      },
+      "AVANTAGE":{
+        "Label":"Avantage",
+        "Detail":"Lancer 4d6."
+      },
+      "DESAVANTAGE":{
+        "Label":"Désavantage",
+        "Detail":"Lancer 2d6."
+      },
+      "OBJETS":{
+        "Label":"Objets ou Don",
+        "Detail":"Si utile, relancer 1d6 dont le résultat ne convient pas."
+      },
+      "CARACTERE":{
+        "Label":"Caractère ",
+        "Detail":"Si positif, gagner 1 Avantage / Si négatif, offrir un point d'Amitié."
+      }
+    },
+    "Grimoire":"Grimoire",
+    "SAC":{
+      "Label":"Sac de voyage",
+      "Details":"Une couverture en laine, un couteau de poche, une cuillère en bois, un petit caquelon de fonte, une grande gourde en cuir, un briquet à amadou, des morceaux de chandelle, un morceau de savon, une brosse, un paquet de croquette de route."
+    },
+    "HISTORIQUE":{
+      "Label":"Historique",
+      "Description":"Description"
+    },
+    "MIAGIE":{
+      "Qualite":"Qualité associée",
+      "Succes":"Succès requis"
+    },
+    "SendMiagie":"Envoyer la Miagie dans le tchat",
+    "CreerMiagie":"Créer Miagie",
+    "AddMiagie":"Ajouter Miagie",
+    "EditMiagie":"Editer Miagie",
+    "DeleteMiagie":"Supprimer Miagie",
+    "SendEquipement":"Envoyer l'Équipement dans le tchat",
+    "CreerEquipement":"Créer Équipement",
+    "AddEquipement":"Ajouter Équipement",
+    "EditEquipement":"Editer Équipement",
+    "DeleteEquipement":"Supprimer Équipement",
+    "ROLL":{
+      "Succes":"Succès",
+      "wAvantage":"avec avantage",
+      "wDesavantage":"avec désavantage",
+      "Abandonne":"Dé abandonné",
+      "ASK":{
+        "Type":"Type de jet",
+        "Standard":"Jet standard",
+        "Avantage":"Jet avec avantage",
+        "Desavantage":"Jet avec désavantage",
+        "AskRelance":"Voulez-vous relancer un dé ?",
+        "Relance":"Relance !",
+        "Roll":"Jet !",
+        "Cancel":"Annuler",
+        "Close":"Fermer"
+      }
+    }
+  }
+}

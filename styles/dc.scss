@@ -1,0 +1,117 @@
+@import "parts/functions";
+@import "parts/chaton";
+@import "parts/items";
+@import "parts/relance";
+
+div {
+    &.dc {
+        div.editor {
+            display:grid;
+        }
+
+        .tox-tinymce {
+            height:100% !important;
+        }
+    }
+
+    &.dcsenditem,
+    &.dcaskroll {
+        font-family: "Patrick Hand";
+
+        h1 {
+            font-size:23px;
+            margin:0px;
+            letter-spacing: 1px;
+            border:0px;
+        }
+
+        p {
+            text-align: justify;
+            letter-spacing: 1px;
+        }
+    }
+
+    &.dc-roll {
+        cursor:pointer;
+
+        div {
+            &.old-roll {
+                display: flex;
+                align-items: center;
+
+                h5 {
+                    margin-bottom: 0px;
+                    margin-top: 5px;
+                    display: inline-block;
+                    margin-right: 5px;
+                }
+
+                ol {
+                    &.dice-old {
+                        display:inline-block;
+                        list-style: none;
+                        margin: 5px 0;
+                        padding: 0;
+                        overflow: hidden;
+                        opacity: 0.8;
+                        filter: grayscale(100%);
+
+                        li {
+                            &.roll {
+                                position: relative;
+                                min-width: 24px;
+                                line-height: 24px;
+                                float: left;
+                                margin-right: 1px;
+                                background-image: url(../icons/svg/d6-grey.svg);
+                                background-repeat: no-repeat;
+                                background-size: 24px 24px;
+                                font-size: var(--font-size-16);
+                                color: #000;
+                                font-weight: bold;
+                                text-align: center;
+                            }
+
+                            &.d6 {
+                                background:$colorGreyDice;
+                            }
+
+                            &.success {
+                                color: #18520b;
+                                background:$colorGreenDice;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.dcaskroll {
+        section.window-content {
+            background:$fond;
+
+            select {
+                width:100%;
+                border-radius:0px;
+            }
+
+            div {
+                &.dialog-buttons {
+                    justify-content: space-between;
+                    display: flex;
+                    flex: none;
+
+                    button {
+                        width:calc(50% - 2px);
+                        border-radius:0px;
+                        margin:0px;
+                        padding:0px;
+                    }
+                }
+            }
+
+
+        }
+    }
+}
