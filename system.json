@@ -73,7 +73,7 @@
   "secondaryTokenAttribute":"amitie",
   "url": "https://github.com/Zakarik/foundry-donjonsetchatons",
   "manifest": "https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/system.json",
-  "download": "",
-  "changelog":"",
+  "download": "https://github.com/Zakarik/foundry-donjonsetchatons/archive/refs/heads/main.zip",
+  "changelog":"https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/Changelog.md",
   "readme":"https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/README.md"
 }
