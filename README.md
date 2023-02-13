@@ -2,11 +2,11 @@
 
 # Foundry system for Donjons et Chatons
 Donjons et Chatons is a french RPG.
-This is the official sheet of Donjons et Chatons, commissioned by Studio Deadcrows.
+This is the official sheet of Donjons et Chatons, approved by Studio Deadcrows.
 
 If you want to help, contact me on Discord Foundry : Zakarik
 
-Il s'agit de la fiche officielle de Donjons et Chatons, commandée par Studio Deadcrows.
+Il s'agit de la fiche officielle de Donjons et Chatons, approuvée par le Studio Deadcrows.
 
 Si vous voulez aider, contactez moi sur le Discord-FR de Foundry : https://discord.gg/pPSDNJk
 
