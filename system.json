@@ -71,9 +71,9 @@
   "gridUnits": "m",
   "primaryTokenAttribute":"coeur",
   "secondaryTokenAttribute":"amitie",
-  "url": "",
-  "manifest": "",
+  "url": "https://github.com/Zakarik/foundry-donjonsetchatons",
+  "manifest": "https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/system.json",
   "download": "",
   "changelog":"",
-  "readme":""
+  "readme":"https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/README.md"
 }
