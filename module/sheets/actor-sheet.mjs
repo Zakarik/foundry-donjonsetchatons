@@ -206,7 +206,8 @@ export class DCActorSheet extends ActorSheet {
                   token: this.actor?.token?.id || null,
                   alias: this.actor?.name || null,
                 },
-                type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+                rolls:[r],
+                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
                 content: await renderTemplate('systems/donjons-et-chatons/templates/msg/roll.html', data),
                 sound: CONFIG.sounds.dice
               };
@@ -350,7 +351,8 @@ export class DCActorSheet extends ActorSheet {
                   token: this.actor?.token?.id || null,
                   alias: this.actor?.name || null,
                 },
-                type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+                rolls:[r],
                 content: await renderTemplate('systems/donjons-et-chatons/templates/msg/roll.html', data),
                 sound: CONFIG.sounds.dice
               };

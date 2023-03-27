@@ -114,7 +114,8 @@ export class DCRelance extends FormApplication  {
                   token: this.object.actor?.token?.id || null,
                   alias: this.object.actor?.name || null,
                 },
-                type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+                rolls:[r],
                 content: await renderTemplate('systems/donjons-et-chatons/templates/msg/roll.html', data),
                 sound: CONFIG.sounds.dice
               };

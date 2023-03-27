@@ -1,8 +1,8 @@
 {
   "id": "donjons-et-chatons",
   "title": "Donjons et Chatons",
-  "description": "La fiche officielle de Donjons et Chatons, approuvée par Deadcrow.",
-  "version": "1.0",
+  "description": "La fiche officielle de Donjons et Chatons, approuvée par Deadcrows.",
+  "version": "1.0.1",
   "esmodules": [
     "module/dc.mjs"
   ],
@@ -29,51 +29,69 @@
     "minimum": "10",
     "verified": "10"
   },
-  "packs":[
+  "packs": [
     {
       "label": "Miagie des ateliers",
       "type": "Item",
       "name": "miagie-des-ateliers",
-      "path": "packs/miagie-des-ateliers.db"
+      "path": "packs/miagie-des-ateliers.db",
+      "private": false,
+      "system": "donjons-et-chatons",
+      "flags": {}
     },
     {
       "label": "Miagie des caravanes",
       "type": "Item",
       "name": "miagie-des-caravanes",
-      "path": "packs/miagie-des-caravanes.db"
+      "path": "packs/miagie-des-caravanes.db",
+      "private": false,
+      "system": "donjons-et-chatons",
+      "flags": {}
     },
     {
       "label": "Miagie des champs",
       "type": "Item",
       "name": "miagie-des-champs",
-      "path": "packs/miagie-des-champs.db"
+      "path": "packs/miagie-des-champs.db",
+      "private": false,
+      "system": "donjons-et-chatons",
+      "flags": {}
     },
     {
       "label": "Miagie des grand'salles",
       "type": "Item",
       "name": "miagie-des-grandsalles",
-      "path": "packs/miagie-des-grandsalles.db"
+      "path": "packs/miagie-des-grandsalles.db",
+      "private": false,
+      "system": "donjons-et-chatons",
+      "flags": {}
     },
     {
       "label": "Miagie des tours",
       "type": "Item",
       "name": "miagie-des-tours",
-      "path": "packs/miagie-des-tours.db"
+      "path": "packs/miagie-des-tours.db",
+      "private": false,
+      "system": "donjons-et-chatons",
+      "flags": {}
     },
     {
       "label": "Miagie des villes",
       "type": "Item",
       "name": "miagie-des-villes",
-      "path": "packs/miagie-des-villes.db"
+      "path": "packs/miagie-des-villes.db",
+      "private": false,
+      "system": "donjons-et-chatons",
+      "flags": {}
     }
   ],
   "gridDistance": 5,
   "gridUnits": "m",
-  "primaryTokenAttribute":"coeur",
-  "secondaryTokenAttribute":"amitie",
+  "primaryTokenAttribute": "coeur",
+  "secondaryTokenAttribute": "amitie",
   "url": "https://github.com/Zakarik/foundry-donjonsetchatons",
   "manifest": "https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/system.json",
-  "download": "https://github.com/Zakarik/foundry-donjonsetchatons/archive/refs/heads/main.zip",
-  "changelog":"https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/Changelog.md",
-  "readme":"https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/README.md"
+  "download": "https://github.com/Zakarik/foundry-donjonsetchatons//archive/1.0.1.zip",
+  "changelog": "https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/Changelog.md",
+  "readme": "https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/README.md"
 }
