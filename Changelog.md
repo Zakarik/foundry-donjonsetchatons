@@ -1,3 +1,6 @@
+# Version 1.0.4
+- Retraits d'un problème de nom.'
+
 # Version 1.0.3
 - Retraits de quelques logs et correction de quelques détails.
 
