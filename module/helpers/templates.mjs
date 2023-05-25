@@ -10,7 +10,6 @@ export const preloadHandlebarsTemplates = async function() {
     // Attribute list partial.
     "systems/donjons-et-chatons/templates/dialog/ask.html",
     "systems/donjons-et-chatons/templates/msg/roll.html",
-    "systems/donjons-et-chatons/templates/msg/roll.html",
     //"systems/aquablue/templates/parts/sheet-groups.html"
   ];
 

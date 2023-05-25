@@ -1,6 +1,7 @@
 // Import document classes.
 import { DCActor } from "./documents/actor.mjs";
 import { DCItem } from "./documents/item.mjs";
+import { DCRoll } from "./documents/roll.js";
 // Import sheet classes.
 import { DCRelance } from "./sheets/relance-sheet.mjs";
 import { DCActorSheet } from "./sheets/actor-sheet.mjs";
@@ -27,6 +28,7 @@ Hooks.once('init', async function() {
       DCActor,
       DCItem
     },
+    DCRoll,
     RollDCMacro
   };
 
@@ -44,6 +46,9 @@ Hooks.once('init', async function() {
   // Define custom Document classes
   CONFIG.Actor.documentClass = DCActor;
   CONFIG.Item.documentClass = DCItem;
+
+  // Define custom Roll class
+  CONFIG.Dice.rolls.unshift(DCRoll);
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);

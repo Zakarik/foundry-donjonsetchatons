@@ -1,5 +1,5 @@
 export class DCRelance extends FormApplication  {
-    constructor(name, actor, value, type, msg, dices, formula, result) {
+    constructor(name, actor, value, type, msg, roll) {
         super();
 
         this.object.name = name;
@@ -7,10 +7,9 @@ export class DCRelance extends FormApplication  {
         this.object.value = value;
         this.object.type = type;
         this.object.msg = msg;
-        this.object.dices = dices;
-        this.object.formula = formula;
-        this.object.result = result;
-        this.object.selected = null;
+        this.object.dices = undefined;
+        this.object.results = undefined;
+        this.object.roll = roll;
     }
 
     static get defaultOptions() {
@@ -28,9 +27,6 @@ export class DCRelance extends FormApplication  {
     getData() {
         const context = super.getData();
 
-        context.object.results = context.object.dices.join(' ');
-        console.log(context);
-
         return context;
     }
 
@@ -38,25 +34,28 @@ export class DCRelance extends FormApplication  {
     activateListeners(html) {
         super.activateListeners(html);
 
-        html.find('li.roll').click(ev => {
+        html.find('li.roll').click(async ev => {
             const num = $(ev.currentTarget).data("num");
             const dices = this.object.dices;
+            const dice = [];
 
             for(let i = 0;i < dices.length;i++) {
-                this.object.dices[i] = dices[i].replace('roll selected', 'roll');
+                dice.push(dices[i].replace('roll selected', 'roll'));
 
                 if(num === i) {
-                    this.object.dices[i] = dices[i].replace('roll', 'roll selected');
+                    dice[i] = dices[i].replace("roll", "roll selected");
                     this.object.selected = i;
                 }
             }
+
+            await this.setDices(dice);
             this.render(true);
         });
 
         html.find('button.relance').click(async ev => {
             const name = this.object.name;
             const selected = this.object.selected;
-            const formula = this.object.formula;
+            const formula = this.object.roll.formula;
             let result = this.object.result;
 
             if(selected === null) return;
@@ -64,72 +63,50 @@ export class DCRelance extends FormApplication  {
             game.messages.get(this.object.msg).delete();
 
             let r = new Roll(`1D6cs<=${this.object.value}`);
-
             await r.evaluate({async:true});
 
-            const replaced = this.object.dices[selected];
+            console.warn(r)
 
-            this.object.dices.splice(selected, 1);
+            this.object.roll.editRoll(
+              selected,
+              r.dice[0]
+            );
 
-            const newDice = this.object.dices;
+            const msgData = {
+              user: game.user.id,
+              speaker: {
+                actor: this.object.actor?.id || null,
+                token: this.object.actor?.token?.id || null,
+                alias: this.object.actor?.name || null,
+              },
+              type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+              rolls:[this.object.roll],
+              sound: CONFIG.sounds.dice,
+              flags:{}
+            };
 
-            if(r.dice[0].results[0].success) {
-                newDice.push(`<li class="roll die d6 success">${r.dice[0].values[0]}</li>`);
-            } else {
-                newDice.push(`<li class="roll die d6">${r.dice[0].values[0]}</li>`);
-            }
+            const cls = getDocumentClass("ChatMessage");
+            const chatMsg = new cls(msgData);
 
-            result += r._total;
-
-            const tooltip = `
-              <div class="dice-tooltip">
-                <section class="tooltip-part">
-                    <div class="dice">
-                        <header class="part-header flexrow">
-                            <span class="part-formula">${formula}</span>
-
-                            <span class="part-total">${result}</span>
-                        </header>
-                        <ol class="dice-rolls">
-                            ${newDice.join(' ')}
-                        </ol>
-                    </div>
-                </section>
-              </div>`;
-
-              const data = {
-                flavor:`${name} (relancé)`,
-                main:{
-                  total:result,
-                  tooltip:tooltip,
-                  relance:true,
-                  old:replaced
-                }
-              };
-
-              const msgData = {
-                user: game.user.id,
-                speaker: {
-                  actor: this.object.actor?.id || null,
-                  token: this.object.actor?.token?.id || null,
-                  alias: this.object.actor?.name || null,
-                },
-                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-                rolls:[r],
-                content: await renderTemplate('systems/donjons-et-chatons/templates/msg/roll.html', data),
-                sound: CONFIG.sounds.dice
-              };
-
-              const rMode = game.settings.get("core", "rollMode");
-              const msgTotalData = ChatMessage.applyRollMode(msgData, rMode);
-
-              await ChatMessage.create(msgTotalData, {
-                rollMode:rMode
-              });
+            const msg = await cls.create(chatMsg.toObject());
         });
     }
 
     async _updateObject(event, formData) {
 
+    }
+
+    async setDices(dices) {
+      this.object.dices = dices;
+      this.object.results = dices.join(' ');
+
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(
+            this.object.dices,
+            this.object.results
+          );
+        }, 0);
+      });
     }
 }

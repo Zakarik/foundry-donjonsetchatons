@@ -141,63 +141,23 @@ export class DCActorSheet extends ActorSheet {
               const result = $(event.find('.choice'))[0].value;
               let name = `${label}`;
               let roll = `3D6`;
-              let formula = `3D6<=${value}`;
               let numDice = 3;
 
               switch(result) {
                 case 'avantage':
                   name += `<br/>${game.i18n.localize(`DC.ROLL.wAvantage`)}`;
                   roll = `4D6`;
-                  formula = `4D6<=${value}`;
                   numDice = 4;
                   break;
                 case 'desavantage':
                   name += `<br/>${game.i18n.localize(`DC.ROLL.wDesavantage`)}`;
                   roll = `2D6`;
-                  formula = `2D6<=${value}`;
                   numDice = 2;
                   break;
               }
 
-              let r = new Roll(`${roll}cs<=${value}`);
-
+              let r = new game.dc.DCRoll(`${roll}cs<=${value}`, {}, {flavor:name, DCRoll:true});
               await r.evaluate({async:true});
-
-              let dices = [];
-
-              for(let i = 0;i < r.dice[0].results.length;i++) {
-                const dS = r.dice[0].results[i];
-
-                if(dS.success) {
-                  dices.push(`<li class="roll die d6 success" data-num="${i}">${dS.result}</li>`);
-                } else {
-                  dices.push(`<li class="roll die d6" data-num="${i}">${dS.result}</li>`);
-                }
-              }
-
-              const tooltip = `
-              <div class="dice-tooltip">
-                <section class="tooltip-part">
-                    <div class="dice">
-                        <header class="part-header flexrow">
-                            <span class="part-formula">${formula}</span>
-
-                            <span class="part-total">${r._total}</span>
-                        </header>
-                        <ol class="dice-rolls">
-                            ${dices.join(' ')}
-                        </ol>
-                    </div>
-                </section>
-              </div>`;
-
-              const data = {
-                flavor:`${name}`,
-                main:{
-                  total:r._total,
-                  tooltip:tooltip
-                }
-              };
 
               const msgData = {
                 user: game.user.id,
@@ -208,18 +168,27 @@ export class DCActorSheet extends ActorSheet {
                 },
                 rolls:[r],
                 type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-                content: await renderTemplate('systems/donjons-et-chatons/templates/msg/roll.html', data),
-                sound: CONFIG.sounds.dice
+                sound: CONFIG.sounds.dice,
+                flags:{}
               };
 
-              const rMode = game.settings.get("core", "rollMode");
-              const msgTotalData = ChatMessage.applyRollMode(msgData, rMode);
+              const cls = getDocumentClass("ChatMessage");
+              const chatMsg = new cls(msgData);
 
-              const msg = await ChatMessage.create(msgTotalData, {
-                rollMode:rMode
-              });
+              const msg = await cls.create(chatMsg.toObject());
 
-              if(r._total < numDice) new DCRelance(name, this.actor, value, result, msg.id, dices, formula, r._total).render(true);
+              if(r.total < numDice) {
+                const rolls = r.dice[0].getTooltipData().rolls;
+                const dices = [];
+
+                for(let i = 0;i < rolls.length;i++) {
+                  dices.push(`<li class="roll ${rolls[i].classes}" data-num="${i}">${rolls[i].result}</li>`);
+                }
+
+                const relance = new DCRelance(name, this.actor, value, result, msg.id, r);
+                await relance.setDices(dices);
+                relance.render(true);
+              }
             }
           },
           two: {
@@ -286,63 +255,23 @@ export class DCActorSheet extends ActorSheet {
               const result = $(event.find('.choice'))[0].value;
               let name = `${label}`;
               let roll = `3D6`;
-              let formula = `3D6<=${value}`;
               let numDice = 3;
 
               switch(result) {
                 case 'avantage':
                   name += `<br/>${game.i18n.localize(`DC.ROLL.wAvantage`)}`;
                   roll = `4D6`;
-                  formula = `4D6<=${value}`;
                   numDice = 4;
                   break;
                 case 'desavantage':
                   name += `<br/>${game.i18n.localize(`DC.ROLL.wDesavantage`)}`;
                   roll = `2D6`;
-                  formula = `2D6<=${value}`;
                   numDice = 2;
                   break;
               }
 
-              let r = new Roll(`${roll}cs<=${value}`);
-
+              let r = new game.dc.DCRoll(`${roll}cs<=${value}`, {}, {flavor:name, DCRoll:true});
               await r.evaluate({async:true});
-
-              let dices = [];
-
-              for(let i = 0;i < r.dice[0].results.length;i++) {
-                const dS = r.dice[0].results[i];
-
-                if(dS.success) {
-                  dices.push(`<li class="roll die d6 success" data-num="${i}">${dS.result}</li>`);
-                } else {
-                  dices.push(`<li class="roll die d6" data-num="${i}">${dS.result}</li>`);
-                }
-              }
-
-              const tooltip = `
-              <div class="dice-tooltip">
-                <section class="tooltip-part">
-                    <div class="dice">
-                        <header class="part-header flexrow">
-                            <span class="part-formula">${formula}</span>
-
-                            <span class="part-total">${r._total}</span>
-                        </header>
-                        <ol class="dice-rolls">
-                            ${dices.join(' ')}
-                        </ol>
-                    </div>
-                </section>
-              </div>`;
-
-              const data = {
-                flavor:`${name}`,
-                main:{
-                  total:r._total,
-                  tooltip:tooltip
-                }
-              };
 
               const msgData = {
                 user: game.user.id,
@@ -351,20 +280,29 @@ export class DCActorSheet extends ActorSheet {
                   token: this.actor?.token?.id || null,
                   alias: this.actor?.name || null,
                 },
-                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
                 rolls:[r],
-                content: await renderTemplate('systems/donjons-et-chatons/templates/msg/roll.html', data),
-                sound: CONFIG.sounds.dice
+                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
+                sound: CONFIG.sounds.dice,
+                flags:{}
               };
 
-              const rMode = game.settings.get("core", "rollMode");
-              const msgTotalData = ChatMessage.applyRollMode(msgData, rMode);
+              const cls = getDocumentClass("ChatMessage");
+              const chatMsg = new cls(msgData);
 
-              const msg = await ChatMessage.create(msgTotalData, {
-                rollMode:rMode
-              });
+              const msg = await cls.create(chatMsg.toObject());
 
-              if(r._total < numDice) new DCRelance(name, this.actor, value, result, msg.id, dices, formula, r._total).render(true);
+              if(r.total < numDice) {
+                const rolls = r.dice[0].getTooltipData().rolls;
+                const dices = [];
+
+                for(let i = 0;i < rolls.length;i++) {
+                  dices.push(`<li class="roll ${rolls[i].classes}" data-num="${i}">${rolls[i].result}</li>`);
+                }
+
+                const relance = new DCRelance(name, this.actor, value, result, msg.id, r);
+                await relance.setDices(dices);
+                relance.render(true);
+              }
             }
           },
           two: {
