@@ -37,8 +37,6 @@ export class DCActorSheet extends ActorSheet {
 
     context.systemData = context.data.system;
 
-    console.log(context);
-
     return context;
   }
 

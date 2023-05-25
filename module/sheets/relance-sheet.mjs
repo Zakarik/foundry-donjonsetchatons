@@ -65,8 +65,6 @@ export class DCRelance extends FormApplication  {
             let r = new Roll(`1D6cs<=${this.object.value}`);
             await r.evaluate({async:true});
 
-            console.warn(r)
-
             this.object.roll.editRoll(
               selected,
               r.dice[0]

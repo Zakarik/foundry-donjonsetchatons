@@ -1,3 +1,6 @@
+# Version 1.0.3
+- Retraits de quelques logs et correction de quelques détails.
+
 # Version 1.0.2
 - Mise à jour de compatibilité avec Foundry V11.
 
