@@ -22,8 +22,6 @@ export class DCItemSheet extends ItemSheet {
 
     context.systemData = context.data.system;
 
-    console.log(this);
-
     return context;
   }
 

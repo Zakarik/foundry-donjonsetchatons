@@ -1,5 +1,10 @@
+# Version 1.0.5
+- Correction d'un problème dans les fichiers de traductions.
+- Correction d'un problème de mise en page pour les miagies.
+- Correction d'un problème de compatibilité avec certains modules.
+
 # Version 1.0.4
-- Retraits d'un problème de nom.'
+- Retraits d'un problème de nom.
 
 # Version 1.0.3
 - Retraits de quelques logs et correction de quelques détails.

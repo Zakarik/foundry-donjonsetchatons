@@ -2,7 +2,7 @@
   "id": "donjons-et-chatons",
   "title": "Donjons et Chatons",
   "description": "La fiche officielle de Donjons et Chatons, approuvée par Deadcrows.",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "esmodules": [
     "module/dc.mjs"
   ],

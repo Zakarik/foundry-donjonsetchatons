@@ -6,7 +6,15 @@
     "TypeMiagie":"Miagie",
     "TypeEquipement":"Équipement"
   },
-
+  "TYPES":{
+    "Actor":{
+      "character":"Chaton"
+    },
+    "Item":{
+      "miagie":"Miagie",
+      "equipement":"Équipement"
+    }
+  },
   "DC": {
     "Nom":"Nom",
     "Enfance":"Enfance",
