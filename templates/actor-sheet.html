@@ -171,7 +171,7 @@
                                     {{key.name}}
                                 </span>
                                 <div class="data">
-                                    <b>{{localize "DC.MIAGIE.Qualite"}} : </b>{{translateQualite key.system.qualite}}
+                                    <b>{{localize "DC.MIAGIE.Qualite"}} : </b>{{#if key.system.qualite}}{{translateQualite key.system.qualite}}{{/if}}
                                 </div>
                                 <div class="data">
                                     <b>{{localize "DC.MIAGIE.Succes"}} : </b>{{key.system.succes}}
@@ -195,6 +195,12 @@
                                 <span class="label">
                                     {{key.name}}
                                 </span>
+                                <div class="data">
+                                    <b>{{localize "DC.MIAGIE.Qualite"}} : </b>{{#if key.system.qualite}}{{translateQualite key.system.qualite}}{{/if}}
+                                </div>
+                                <div class="data">
+                                    <b>{{localize "DC.MIAGIE.Succes"}} : </b>{{key.system.succes}}
+                                </div>
                                 {{{key.system.description}}}
                             </div>
                         {{/if}}
