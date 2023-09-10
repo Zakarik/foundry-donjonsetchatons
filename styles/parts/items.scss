@@ -6,7 +6,7 @@
     }
 
     header.sheet-header {
-        display:grid;
+        display:grid !important;
         grid-template-columns:150px 1fr;
         grid-template-rows:48px 1fr;
         grid-gap:5px;
