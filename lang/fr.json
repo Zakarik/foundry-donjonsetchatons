@@ -1,6 +1,6 @@
 {
   "ACTOR":{
-    "TypeCharacter":"Chaton"
+    "TypeChaton":"Chaton"
   },
   "ITEM":{
     "TypeMiagie":"Miagie",
@@ -8,7 +8,7 @@
   },
   "TYPES":{
     "Actor":{
-      "character":"Chaton"
+      "chaton":"Chaton"
     },
     "Item":{
       "miagie":"Miagie",

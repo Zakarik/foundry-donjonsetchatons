@@ -155,7 +155,7 @@ export class DCActorSheet extends ActorSheet {
               }
 
               let r = new game.dc.DCRoll(`${roll}cs<=${value}`, {}, {flavor:name, DCRoll:true});
-              await r.evaluate({async:true});
+              await r.evaluate();
 
               const msgData = {
                 user: game.user.id,
@@ -269,7 +269,7 @@ export class DCActorSheet extends ActorSheet {
               }
 
               let r = new game.dc.DCRoll(`${roll}cs<=${value}`, {}, {flavor:name, DCRoll:true});
-              await r.evaluate({async:true});
+              await r.evaluate();
 
               const msgData = {
                 user: game.user.id,

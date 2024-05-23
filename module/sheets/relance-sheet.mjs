@@ -63,7 +63,7 @@ export class DCRelance extends FormApplication  {
             game.messages.get(this.object.msg).delete();
 
             let r = new Roll(`1D6cs<=${this.object.value}`);
-            await r.evaluate({async:true});
+            await r.evaluate();
 
             this.object.roll.editRoll(
               selected,
