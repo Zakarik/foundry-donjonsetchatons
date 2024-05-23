@@ -1,3 +1,9 @@
+# Version 1.1.1
+- Correction d'un problème dans system.json.
+
+# Version 1.1.0
+- Vérification de la compatibilité avec la V12.
+
 # Version 1.0.5
 - Correction d'un problème dans les fichiers de traductions.
 - Correction d'un problème de mise en page pour les miagies.
