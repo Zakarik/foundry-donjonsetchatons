@@ -30,3 +30,9 @@ export const DC = {};
    "trouverSonChemin",
    "trouverUneInformation"
  ];
+
+ DC.qualites = {
+  'costaud':"DC.QUALITES.Costaud",
+  'malin':"DC.QUALITES.Malin",
+  'mignon':"DC.QUALITES.Mignon",
+ }

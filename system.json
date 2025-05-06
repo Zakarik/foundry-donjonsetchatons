@@ -2,7 +2,7 @@
   "id": "donjons-et-chatons",
   "title": "Donjons et Chatons",
   "description": "La fiche officielle de Donjons et Chatons, approuvée par Deadcrows.",
-  "version": "1.1.1",
+  "version": "#{VERSION}#",
   "esmodules": [
     "module/dc.mjs"
   ],
@@ -13,6 +13,12 @@
     {
       "lang": "fr",
       "name": "French",
+      "path": "lang/fr.json",
+      "flags": {}
+    },
+    {
+      "lang": "en",
+      "name": "English",
       "path": "lang/fr.json",
       "flags": {}
     }
@@ -26,8 +32,8 @@
     }
   ],
   "compatibility": {
-    "minimum": "11",
-    "verified": "12"
+    "minimum": "12",
+    "verified": "13"
   },
   "packs": [
     {
@@ -85,13 +91,23 @@
       "flags": {}
     }
   ],
-  "gridDistance": 5,
-  "gridUnits": "m",
+  "documentTypes": {
+    "Actor": {
+      "chaton": {}
+    },
+    "Item":{
+      "miagie":{},
+      "equipement":{}
+    }
+  },
+  "grid":{
+    "distance":5,
+    "unit":"m"
+  },
   "primaryTokenAttribute": "coeur",
   "secondaryTokenAttribute": "amitie",
-  "url": "https://github.com/Zakarik/foundry-donjonsetchatons",
-  "manifest": "https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/system.json",
-  "download": "https://github.com/Zakarik/foundry-donjonsetchatons/archive/1.1.1.zip",
-  "changelog": "https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/Changelog.md",
+  "url": "#{URL}#",
+  "manifest": "#{MANIFEST}#",
+  "download": "#{DOWNLOAD}#",
   "readme": "https://raw.githubusercontent.com/Zakarik/foundry-donjonsetchatons/main/README.md"
 }

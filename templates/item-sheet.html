@@ -9,12 +9,7 @@
             <label>
                 <span>{{localize "DC.MIAGIE.Qualite"}}</span>
                 <select name="system.qualite">
-                    {{#select systemData.qualite}}
-                    <option value=""></option>
-                    <option value="costaud">{{localize "DC.QUALITES.Costaud"}}</option>
-                    <option value="malin">{{localize "DC.QUALITES.Malin"}}</option>
-                    <option value="mignon">{{localize "DC.QUALITES.Mignon"}}</option>
-                    {{/select}}
+                    {{selectOptions (generateSelect 'qualites') selected=systemData.qualite localize=true}}
                 </select>
             </label>
             <label>

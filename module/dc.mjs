@@ -1,14 +1,19 @@
 // Import document classes.
 import { DCActor } from "./documents/actor.mjs";
 import { DCItem } from "./documents/item.mjs";
-import { DCRoll } from "./documents/roll.js";
+import DCRoll from "./documents/roll.js";
 // Import sheet classes.
 import { DCRelance } from "./sheets/relance-sheet.mjs";
 import { DCActorSheet } from "./sheets/actor-sheet.mjs";
 import { DCItemSheet } from "./sheets/item-sheet.mjs";
+// Import sheet models.
+import { DCDataModel } from "./models/personnage-data-model.mjs";
+import { EquipementDataModel } from "./models/equipement-data-model.mjs";
+import { MiagieDataModel } from "./models/miagie-data-model.mjs";
 // Import helper/utility classes and constants.
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { DC } from "./helpers/config.mjs";
+import HooksDC from "./hooks.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -22,13 +27,13 @@ Hooks.once('init', async function() {
     applications: {
       DCActorSheet,
       DCItemSheet,
-      DCRelance,
     },
     documents:{
       DCActor,
       DCItem
     },
     DCRoll,
+    DCRelance,
     RollDCMacro
   };
 
@@ -47,12 +52,17 @@ Hooks.once('init', async function() {
   CONFIG.Actor.documentClass = DCActor;
   CONFIG.Item.documentClass = DCItem;
 
-  // Define custom Roll class
-  CONFIG.Dice.rolls.unshift(DCRoll);
-
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
   Items.unregisterSheet("core", ItemSheet);
+
+  CONFIG.Actor.dataModels = {
+    chaton:DCDataModel,
+  };
+  CONFIG.Item.dataModels = {
+    miagie:MiagieDataModel,
+    equipement:EquipementDataModel,
+  };
 
   Actors.registerSheet("donjons-et-chatons", DCActorSheet, {
     types: ["chaton"],
@@ -92,12 +102,23 @@ Hooks.once('init', async function() {
     return result;
   });
 
+  Handlebars.registerHelper('generateSelect', function(type) {
+    const data = {
+      '':'',
+    };
+
+    foundry.utils.mergeObject(data, CONFIG.DC[type]);
+
+    return data;
+  });
+
   Handlebars.registerHelper('translateQualite', function(qualite) {
 
     const result = qualite === undefined ? "" : game.i18n.localize(`DC.QUALITES.${qualite.charAt(0).toUpperCase()+qualite.substr(1)}`);
 
     return result;
   });
+  HooksDC.init();
 
   // Preload Handlebars templates.
   return preloadHandlebarsTemplates();

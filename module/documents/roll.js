@@ -23,44 +23,149 @@
  * console.log(r.total);    // 22
  * ```
  */
-export class DCRoll extends Roll {
+export default class DCRoll {
 
+  constructor(actor, label) {
+      this._actor = actor;
+      this._results = null;
+      this._roll = null;
+      this._type = null;
+      this._label = label;
+  }
   /**
    * The HTML template path used to render a complete Roll object to the chat log
    * @type {string}
    */
   static CHAT_TEMPLATE = "systems/donjons-et-chatons/templates/msg/roll.html";
 
-  /* -------------------------------------------- */
-
-  /**
-   * Render a Roll instance to HTML
-   * @param {object} [options={}]               Options which affect how the Roll is rendered
-   * @param {string} [options.flavor]             Flavor text to include
-   * @param {string} [options.template]           A custom HTML template path
-   * @param {boolean} [options.isPrivate=false]   Is the Roll displayed privately?
-   * @returns {Promise<string>}                 The rendered HTML template as a string
-   */
-  async render({flavor, template=this.constructor.CHAT_TEMPLATE, isPrivate=false}={}) {
-    if ( !this._evaluated ) await this.evaluate({async: true});
-    const options = this.options;
-    const DCFlavor = options.flavor ? options.flavor : flavor;
-    const DCRoll = options.DCRoll ? options.DCRoll : false;
-    const DCOld = options.DCOld ? options.DCOld : false;
-
-    const chatData = {
-      formula: isPrivate ? "???" : this._formula,
-      flavor: isPrivate ? null : DCFlavor,
-      DCRoll:DCRoll,
-      DCOld:DCOld,
-      user: game.user.id,
-      tooltip: isPrivate ? "" : await this.getTooltip(),
-      total: isPrivate ? "?" : Math.round(this.total * 100) / 100
-    };
-    return renderTemplate(template, chatData);
+  get actor() {
+    return this._actor;
   }
 
-  async editRoll(num, value) {
+  set actor(value) {
+    this._actor = value;
+  }
+
+  get results() {
+    return this._results;
+  }
+
+  set results(value) {
+    this._results = value;
+  }
+
+  get roll() {
+    return this._roll;
+  }
+
+  set roll(value) {
+    this._roll = value;
+  }
+
+  get label() {
+    return this._label;
+  }
+
+  get dices() {
+      return this._dices;
+  }
+
+  set dices(value) {
+      this._dices = value;
+  }
+
+  set label(value) {
+    this._label = value;
+  }
+
+  get difficulte() {
+    return this._difficulte;
+  }
+
+  set difficulte(value) {
+    this._difficulte = value;
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  set type(value) {
+    this._type = value;
+  }
+
+  async doRoll(dices, type) {
+    const difficulte = this.difficulte;
+    const roll = new Roll(dices);
+    await roll.evaluate();
+
+    const listDices = roll.dice[0].results;
+    let allDice = [];
+    let success = 0;
+
+    for(let d of listDices) {
+        if(d.active && d.result <= difficulte) success += 1;
+        allDice.push(d)
+    }
+
+    this.dices = allDice;
+    this.roll = roll;
+    this.results = success;
+    this.type = type;
+  }
+
+  async sendMsg() {
+      const chatRollMode = game.settings.get("core", "rollMode");
+      let main = {};
+      main.label = this.label;
+      main.tooltip = await this.roll.getTooltip();
+      main.total = this.results;
+
+      let chatData = {
+          user:game.user.id,
+          speaker: {
+              actor: this.actor?.id ?? null,
+              token: this.actor?.token ?? null,
+              alias: this.actor?.name ?? null,
+              scene: this.actor?.token?.parent?.id ?? null
+          },
+          content:await renderTemplate(this.constructor.CHAT_TEMPLATE, main),
+          flags:{
+            "donjons-et-chatons":{
+              roll:{
+                difficulte:this.difficulte,
+                dices:this.dices,
+                results:this.results,
+              }
+            }
+          },
+          sound: CONFIG.sounds.dice,
+          rolls:this.roll,
+          rollMode:chatRollMode,
+      };
+
+      const msg = await ChatMessage.create(chatData);
+      if(game.dice3d) {
+        game.dice3d.waitFor3DAnimationByMessageID(msg.id).then(()=> this.postRoll(msg));
+      } else {
+        this.postRoll(msg);
+      }
+
+  }
+
+  async postRoll(msg) {
+    let r = new game.dc.DCRelance(this.label, this.actor, this.difficulte, this.type, msg.id, this.roll);
+    const rolls = this.roll.dice[0].getTooltipData().rolls;
+    const dices = [];
+
+    for(let i = 0;i < rolls.length;i++) {
+      dices.push(`<li class="roll ${rolls[i].classes}" data-num="${i}">${rolls[i].result}</li>`);
+    }
+    await r.setDices(dices);
+    r.render(true);
+  }
+
+  /*async editRoll(num, value) {
     const template = this.dice[0].getTooltipData().rolls[num];
 
     this.options = foundry.utils.mergeObject({
@@ -70,5 +175,5 @@ export class DCRoll extends Roll {
     this.dice[0].results[num] = value.results[0];
 
     if(value.results[0].success) this._total += 1;
-  }
+  }*/
 }

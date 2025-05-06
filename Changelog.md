@@ -1,3 +1,6 @@
+# Version 1.2.0
+- Compatibilité avec la V13.
+
 # Version 1.1.1
 - Correction d'un problème dans system.json.
 

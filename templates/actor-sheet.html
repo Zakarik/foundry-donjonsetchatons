@@ -119,12 +119,7 @@
                             <span>{{key}}</span>
                         </label>
                         <select name="system.talents.{{talent}}.qualite">
-                            {{#select (talentQualiteSelected @root talent)}}
-                                <option value=""></option>
-                                <option value="costaud">{{localize "DC.QUALITES.Costaud"}}</option>
-                                <option value="malin">{{localize "DC.QUALITES.Malin"}}</option>
-                                <option value="mignon">{{localize "DC.QUALITES.Mignon"}}</option>
-                            {{/select}}
+                            {{selectOptions (generateSelect 'qualites') selected=(talentQualiteSelected @root talent) localize=true}}
                         </select>
                         <img src="systems/donjons-et-chatons/assets/icons/D6Black.svg" class="d6roll rolltalent draggable" data-label="{{key}}" data-istalent="true" data-id="{{talent}}" data-talent="{{talent}}">
                     </div>

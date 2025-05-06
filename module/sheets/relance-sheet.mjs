@@ -21,7 +21,9 @@ export class DCRelance extends FormApplication  {
           height: 250,
           dragDrop: [{dragSelector: ".draggable", dropSelector: null}],
         });
-      }
+    }
+
+    static CHAT_TEMPLATE = "systems/donjons-et-chatons/templates/msg/roll.html";
 
     /** @inheritdoc */
     getData() {
@@ -56,37 +58,76 @@ export class DCRelance extends FormApplication  {
             const name = this.object.name;
             const selected = this.object.selected;
             const formula = this.object.roll.formula;
+            const getMsg = game.messages.get(this.object.msg);
             let result = this.object.result;
 
-            if(selected === null) return;
+            if(selected === undefined || !getMsg) return;
+            const roll = this.object.roll;
+            const difficulte = this.object.value;
+            let getData = getMsg.getFlag("donjons-et-chatons", "roll");
+            let r = new Roll(`1D6`);
+            await r.evaluate();
+            const tooltip = await r.getTooltip();
+            let oldTooltip = await roll.getTooltip();
+            let flags = getData;
 
+            if(r.total <= difficulte) {
+              flags.results += 1;
+            }
+
+            const dices = flags.dices;
+            dices[selected].active = false;
+            dices.push({
+              result:r.total,
+              active:true,
+            })
+
+            if(dices[selected].result <= difficulte) {
+              flags.results -= 1;
+            }
+            let l = 0;
+            let n = 0;
+            let split = oldTooltip.split('\n');
+            let old = '';
+
+            for(let t of split) {
+              if(t.includes('<li class=\"roll') && n === selected) {
+                old = split[l];
+                split[l] = split[l].replace('d6', 'd6 discarded');
+                break;
+              } else if(t.includes('<li class=\"roll')) n += 1;
+
+              l += 1;
+            }
+
+            let main = {};
+            main.label = this.object.name;
+            main.tooltip = `${split.join('\n')}${tooltip}`;
+            main.total = flags.results;
+            main.DCOld = old;
             game.messages.get(this.object.msg).delete();
 
-            let r = new Roll(`1D6cs<=${this.object.value}`);
-            await r.evaluate();
+            const chatRollMode = game.settings.get("core", "rollMode");
 
-            this.object.roll.editRoll(
-              selected,
-              r.dice[0]
-            );
-
-            const msgData = {
-              user: game.user.id,
-              speaker: {
-                actor: this.object.actor?.id || null,
-                token: this.object.actor?.token?.id || null,
-                alias: this.object.actor?.name || null,
-              },
-              type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-              rolls:[this.object.roll],
-              sound: CONFIG.sounds.dice,
-              flags:{}
+            let chatData = {
+                user:game.user.id,
+                speaker: {
+                  actor: this.object.actor?.id || null,
+                  token: this.object.actor?.token?.id || null,
+                  alias: this.object.actor?.name || null,
+                },
+                content:await renderTemplate(this.constructor.CHAT_TEMPLATE, main),
+                flags:{
+                  "donjons-et-chatons":{
+                    roll:flags
+                  }
+                },
+                sound: CONFIG.sounds.dice,
+                rolls:r,
+                rollMode:chatRollMode,
             };
 
-            const cls = getDocumentClass("ChatMessage");
-            const chatMsg = new cls(msgData);
-
-            const msg = await cls.create(chatMsg.toObject());
+            const msg = await ChatMessage.create(chatData);
         });
     }
 

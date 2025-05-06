@@ -154,39 +154,10 @@ export class DCActorSheet extends ActorSheet {
                   break;
               }
 
-              let r = new game.dc.DCRoll(`${roll}cs<=${value}`, {}, {flavor:name, DCRoll:true});
-              await r.evaluate();
-
-              const msgData = {
-                user: game.user.id,
-                speaker: {
-                  actor: this.actor?.id || null,
-                  token: this.actor?.token?.id || null,
-                  alias: this.actor?.name || null,
-                },
-                rolls:[r],
-                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-                sound: CONFIG.sounds.dice,
-                flags:{}
-              };
-
-              const cls = getDocumentClass("ChatMessage");
-              const chatMsg = new cls(msgData);
-
-              const msg = await cls.create(chatMsg.toObject());
-
-              if(r.total < numDice) {
-                const rolls = r.dice[0].getTooltipData().rolls;
-                const dices = [];
-
-                for(let i = 0;i < rolls.length;i++) {
-                  dices.push(`<li class="roll ${rolls[i].classes}" data-num="${i}">${rolls[i].result}</li>`);
-                }
-
-                const relance = new DCRelance(name, this.actor, value, result, msg.id, r);
-                await relance.setDices(dices);
-                relance.render(true);
-              }
+              let r = new game.dc.DCRoll(this.actor, name, result);
+              r.difficulte = parseInt(value);
+              await r.doRoll(roll);
+              r.sendMsg();
             }
           },
           two: {
@@ -268,39 +239,10 @@ export class DCActorSheet extends ActorSheet {
                   break;
               }
 
-              let r = new game.dc.DCRoll(`${roll}cs<=${value}`, {}, {flavor:name, DCRoll:true});
-              await r.evaluate();
-
-              const msgData = {
-                user: game.user.id,
-                speaker: {
-                  actor: this.actor?.id || null,
-                  token: this.actor?.token?.id || null,
-                  alias: this.actor?.name || null,
-                },
-                rolls:[r],
-                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
-                sound: CONFIG.sounds.dice,
-                flags:{}
-              };
-
-              const cls = getDocumentClass("ChatMessage");
-              const chatMsg = new cls(msgData);
-
-              const msg = await cls.create(chatMsg.toObject());
-
-              if(r.total < numDice) {
-                const rolls = r.dice[0].getTooltipData().rolls;
-                const dices = [];
-
-                for(let i = 0;i < rolls.length;i++) {
-                  dices.push(`<li class="roll ${rolls[i].classes}" data-num="${i}">${rolls[i].result}</li>`);
-                }
-
-                const relance = new DCRelance(name, this.actor, value, result, msg.id, r);
-                await relance.setDices(dices);
-                relance.render(true);
-              }
+              let r = new game.dc.DCRoll(this.actor, name, result);
+              r.difficulte = parseInt(value);
+              await r.doRoll(roll);
+              r.sendMsg();
             }
           },
           two: {
