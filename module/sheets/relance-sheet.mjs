@@ -126,7 +126,7 @@ export class DCRelance extends FormApplication  {
                 rolls:r,
                 rollMode:chatRollMode,
             };
-
+            ChatMessage.applyRollMode(chatData, chatRollMode);
             const msg = await ChatMessage.create(chatData);
         });
     }

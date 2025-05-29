@@ -144,6 +144,7 @@ export default class DCRoll {
           rollMode:chatRollMode,
       };
 
+      ChatMessage.applyRollMode(chatData, chatRollMode);
       const msg = await ChatMessage.create(chatData);
       if(game.dice3d) {
         game.dice3d.waitFor3DAnimationByMessageID(msg.id).then(()=> this.postRoll(msg));

@@ -1,3 +1,6 @@
+# Version 1.2.1
+- Correction d'un problème de jet privé qui ne l'étaient pas.
+
 # Version 1.2.0
 - Compatibilité avec la V13.
 
