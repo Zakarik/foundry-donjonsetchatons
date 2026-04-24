@@ -18,6 +18,6 @@ export class DCItem extends Item {
             }
         }
 
-        await super.create(data, options);
+        return await super.create(data, options);
     }
 }

@@ -13,7 +13,7 @@ export class DCActor extends Actor {
     if (data.img === undefined) {
         data.img = "systems/donjons-et-chatons/assets/icons/Chaton.svg";
     }
-    await super.create(data, options);
+    return await super.create(data, options);
   }
 
   /** @override */
